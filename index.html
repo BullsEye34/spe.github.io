@@ -52,10 +52,15 @@ function CallAPI($method, $url, $data = false)
 
 
 <html>
+    	<link rel="shortcut icon" href="http://www.sunpvenergy.com/wp-content/uploads/2017/09/small-2.png" type="image/x-icon" />
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<title>
+    SunPVEnergy Login
+</title>
+<body>
     <center>
         <h4 style="color: #fff;"><img src="logo-1.png"><br><br>Login</h4>
     <form  method="post" action="in.php">
@@ -78,15 +83,25 @@ function CallAPI($method, $url, $data = false)
 </button>
 </form>
         </center>
-
+    </body>
     
 </html>
+
+<script>
+const Http = new XMLHttpRequest();
+const url='https://jsonplaceholder.typicode.com/posts';
+Http.open("GET", url);
+Http.send();
+Http.onreadystatechange=(e)=>{
+console.log(Http.responseText)
+}
+</script>
 
 <style>
     html{
         height: auto;
         padding-top: 30%;
-        
+        overflow-y: hidden;
     }
 @media only screen and (min-width: 600px){
         html{
@@ -96,6 +111,8 @@ function CallAPI($method, $url, $data = false)
             background-attachment: fixed;
             background-repeat: no-repeat;
             background-position: bottom right;
+            overflow-y: hidden;
+
         }
     }
 </style>
