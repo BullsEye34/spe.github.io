@@ -1,56 +1,3 @@
-<!--<?php?>
-session_start();
-if(isset($_POST['submit'])){
-
-  $username=$_POST['username'];
-  $password=$_POST['password'];
-  $url="https://vrmapi.victronenergy.com/v2/auth/login";
-}
-
-function CallAPI($method, $url, $data = false)
-{
-    $curl = curl_init();
-
-    switch ($method)
-    {
-        case "POST":
-            curl_setopt($curl, CURLOPT_POST, 1);
-
-            if ($data)
-                $result = curl_setopt($curl, CURLOPT_POSTFIELDS,$data);
-            if(!$result) echo "Error";
-            else echo "Success";
-            
-            break;
-            
-            
-        case "PUT":
-            curl_setopt($curl, CURLOPT_PUT, 1);
-            break;
-        default:
-            if ($data)
-                $url = sprintf("%s?%s", $url, http_build_query($data));
-    }
-
-    // Optional Authentication:
-    curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-    curl_setopt($curl, CURLOPT_USERPWD, "username:password");
-
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-
-    $result = curl_exec($curl);
-
-    curl_close($curl);
-
-    return $result;
-}
-
-
-
-?>-->
-
-
 
 <html>
     	<link rel="shortcut icon" href="http://www.sunpvenergy.com/wp-content/uploads/2017/09/small-2.png" type="image/x-icon" />
@@ -92,114 +39,6 @@ function CallAPI($method, $url, $data = false)
     
 </html>
 
-<!--<script>
-    var printert = document.getElementById("printer");
-const Http = new XMLHttpRequest();
-const url='https://vrmapi.victronenergy.com';
-Http.open("GET", url + '/v2/auth/loginAsDemo');
-Http.onload = function(){
-var token = JSON.parse(Http.responseText);
-console.log(token);
-printtoken(token);
-}
-Http.send();
-
-function printtoken(token){
-    var sstring = "";
-    sstring +="<p> Your ID is" + token + "</p>";
-    printert.insertAdjacentHTML('beforeend' , sstring);
-}
-</script>-->
-
-<!--<script>
-    const login = new XMLHttpRequest();
-    const url = 'https://vrmapi.victronenergy.com';
-    login.open("POST", url + '/v2/auth/login', true);
-    login.onload = function(){
-        console.log(login.responseText);
-    }
-    var checker = login.responseText;
-    login.send();
-</script>-->
-
-<!--<script>
-    const url = 'https://vrmapi.victronenergy.com';
-    const form = {
-        username: document.getElementById('username'),
-        password: document.getElementById('password'),
-        submit: document.getElementById('btn-submit')
-    }
-
-    form.submit.addEventListener('click', () =>{
-        const request = new XMLHttpRequest();
-        request.onload = () => {
-            console.log(request.responseText);
-        };
-
-        var requestData = `username=${form.username.value}&password=${form.password.value}`;
-        console.log(requestData);
-
-        request.open('POST', url + '/v2/auth/login', true);
-        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        request.send(requestData);
-    });
-
-</script>-->
-
-<!--<script>
-
-    const url = 'https://vrmapi.victronenergy.com';
-    var Http = new XMLHttpRequest();
-    Http.open("POST", url + '/v2/auth/login');
-    var data = {
-        //"username": document.getElementById('username'),
-        //"password": document.getElementById('password')
-        "username": "rakshith@sunpvenergy.com",
-        "password": "Design3*"
-    }
-    Http.setRequestHeader("Content-Type", "application/json");
-    Http.onload = function(){
-    console.log(Http.responseText);
-}
-Http.send();
-
-</script>-->
-
-<!--<script>
-    function submitit(){
-    const url = 'https://vrmapi.victronenergy.com';
-    var Http = new XMLHttpRequest();
-    Http.open("GET", url + '/v2/auth/loginAsDemo');
-    var tokenElement = document.getElementById('token');
-    var userElement = document.getElementById('username');
-    var passwordElement = document.getElementById('password');
-    /*var data = {
-        //"username": document.getElementById('username'),
-        //"password": document.getElementById('password')
-        "username": "rakshith@sunpvenergy.com",
-        "password": "Design3*"
-    }*/
-    Http.setRequestHeader("Content-Type", "application/json");
-    Http.onload = function(){
-    var tok = JSON.parse(Http.response);
-    var token = tok["token"];
-    console.log(token);
-    if(tok.token){
-        tokenElement.innerHTML ="<p style=\" font-size: 1px;\">" + tok.token + "</p>";
-    }else{
-        tokenElement.innerHTML = "No Token Recieved";
-    }
-}
-//var requestData = `username=${myForm.username.value}&password=${myForm.password.value}`;
-//       console.log(requestData);
-var sendObject = JSON.stringify({username: userElement.value, password: passwordElement.value});
-
-console.log('going to send', sendObject);
-
-Http.send(sendObject);
-
-}
-</script>-->
 <script>
         function submitit(){
         const url = 'https://vrmapi.victronenergy.com';
@@ -208,12 +47,6 @@ Http.send(sendObject);
         var tokenElement = document.getElementById('token');
         var userElement = document.getElementById('username');
         var passwordElement = document.getElementById('password');
-        /*var data = {
-            //"username": document.getElementById('username'),
-            //"password": document.getElementById('password')
-            "username": "rakshith@sunpvenergy.com",
-            "password": "Design3*"
-        }*/
         Http.setRequestHeader("Content-Type", "application/json");
         Http.onload = function(){
         var tok = JSON.parse(Http.response);
@@ -225,8 +58,6 @@ Http.send(sendObject);
             tokenElement.innerHTML = "No Token Recieved";
         }
     }
-    //var requestData = `username=${myForm.username.value}&password=${myForm.password.value}`;
-    //       console.log(requestData);
     var sendObject = JSON.stringify({username: userElement.value, password: passwordElement.value});
     
     console.log('going to send', sendObject);
