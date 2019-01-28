@@ -1,4 +1,4 @@
-<?php
+<!--<?php?>
 session_start();
 if(isset($_POST['submit'])){
 
@@ -48,7 +48,8 @@ function CallAPI($method, $url, $data = false)
 
 
 
-?>
+?>-->
+
 
 
 <html>
@@ -57,24 +58,26 @@ function CallAPI($method, $url, $data = false)
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
 <title>
+    
     SunPVEnergy Login
 </title>
 <body>
     <center>
         <h4 style="color: #fff;"><img src="logo-1.png"><br><br>Login</h4>
-    <form  method="post" action="in.php">
+    <form id="myForm" action="#">
   <div class="mdl-textfield mdl-js-textfield">
-    <input class="mdl-textfield__input" type="text" id="sample1" name="username">
-    <label class="mdl-textfield__label" for="sample1" >Username</label>
+    <input class="mdl-textfield__input" type="text" id="username" name="username">
+    <label class="mdl-textfield__label" for="username" >Username</label>
   </div>
         <br>
           <div class="mdl-textfield mdl-js-textfield">
-              <input class="mdl-textfield__input" type="password" id="sample1" name="password">
-    <label class="mdl-textfield__label" for="sample1">Password</label>
+              <input class="mdl-textfield__input" type="password" id="password" name="password">
+    <label class="mdl-textfield__label" for="password">Password</label>
   </div>
         <br>
-        <button name="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+        <button type="button" onclick="submitit()" id="btn-submit" name="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><!--type="submit"-->
   Submit
 </button>
         
@@ -82,20 +85,156 @@ function CallAPI($method, $url, $data = false)
   Reset
 </button>
 </form>
+
+<div id="token"></div>
         </center>
     </body>
     
 </html>
 
-<script>
+<!--<script>
+    var printert = document.getElementById("printer");
 const Http = new XMLHttpRequest();
-const url='https://jsonplaceholder.typicode.com/posts';
-Http.open("GET", url);
-Http.send();
-Http.onreadystatechange=(e)=>{
-console.log(Http.responseText)
+const url='https://vrmapi.victronenergy.com';
+Http.open("GET", url + '/v2/auth/loginAsDemo');
+Http.onload = function(){
+var token = JSON.parse(Http.responseText);
+console.log(token);
+printtoken(token);
 }
-</script>
+Http.send();
+
+function printtoken(token){
+    var sstring = "";
+    sstring +="<p> Your ID is" + token + "</p>";
+    printert.insertAdjacentHTML('beforeend' , sstring);
+}
+</script>-->
+
+<!--<script>
+    const login = new XMLHttpRequest();
+    const url = 'https://vrmapi.victronenergy.com';
+    login.open("POST", url + '/v2/auth/login', true);
+    login.onload = function(){
+        console.log(login.responseText);
+    }
+    var checker = login.responseText;
+    login.send();
+</script>-->
+
+<!--<script>
+    const url = 'https://vrmapi.victronenergy.com';
+    const form = {
+        username: document.getElementById('username'),
+        password: document.getElementById('password'),
+        submit: document.getElementById('btn-submit')
+    }
+
+    form.submit.addEventListener('click', () =>{
+        const request = new XMLHttpRequest();
+        request.onload = () => {
+            console.log(request.responseText);
+        };
+
+        var requestData = `username=${form.username.value}&password=${form.password.value}`;
+        console.log(requestData);
+
+        request.open('POST', url + '/v2/auth/login', true);
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        request.send(requestData);
+    });
+
+</script>-->
+
+<!--<script>
+
+    const url = 'https://vrmapi.victronenergy.com';
+    var Http = new XMLHttpRequest();
+    Http.open("POST", url + '/v2/auth/login');
+    var data = {
+        //"username": document.getElementById('username'),
+        //"password": document.getElementById('password')
+        "username": "rakshith@sunpvenergy.com",
+        "password": "Design3*"
+    }
+    Http.setRequestHeader("Content-Type", "application/json");
+    Http.onload = function(){
+    console.log(Http.responseText);
+}
+Http.send();
+
+</script>-->
+
+<!--<script>
+    function submitit(){
+    const url = 'https://vrmapi.victronenergy.com';
+    var Http = new XMLHttpRequest();
+    Http.open("GET", url + '/v2/auth/loginAsDemo');
+    var tokenElement = document.getElementById('token');
+    var userElement = document.getElementById('username');
+    var passwordElement = document.getElementById('password');
+    /*var data = {
+        //"username": document.getElementById('username'),
+        //"password": document.getElementById('password')
+        "username": "rakshith@sunpvenergy.com",
+        "password": "Design3*"
+    }*/
+    Http.setRequestHeader("Content-Type", "application/json");
+    Http.onload = function(){
+    var tok = JSON.parse(Http.response);
+    var token = tok["token"];
+    console.log(token);
+    if(tok.token){
+        tokenElement.innerHTML ="<p style=\" font-size: 1px;\">" + tok.token + "</p>";
+    }else{
+        tokenElement.innerHTML = "No Token Recieved";
+    }
+}
+//var requestData = `username=${myForm.username.value}&password=${myForm.password.value}`;
+//       console.log(requestData);
+var sendObject = JSON.stringify({username: userElement.value, password: passwordElement.value});
+
+console.log('going to send', sendObject);
+
+Http.send(sendObject);
+
+}
+</script>-->
+<script>
+        function submitit(){
+        const url = 'https://vrmapi.victronenergy.com';
+        var Http = new XMLHttpRequest();
+        Http.open("GET", url + '/v2/auth/loginAsDemo');
+        var tokenElement = document.getElementById('token');
+        var userElement = document.getElementById('username');
+        var passwordElement = document.getElementById('password');
+        /*var data = {
+            //"username": document.getElementById('username'),
+            //"password": document.getElementById('password')
+            "username": "rakshith@sunpvenergy.com",
+            "password": "Design3*"
+        }*/
+        Http.setRequestHeader("Content-Type", "application/json");
+        Http.onload = function(){
+        var tok = JSON.parse(Http.response);
+        var token = tok["token"];
+        console.log(token);
+        if(tok.token){
+            tokenElement.innerHTML ="<p style=\" font-size: 1px;\">" + tok.token + "</p>";
+        }else{
+            tokenElement.innerHTML = "No Token Recieved";
+        }
+    }
+    //var requestData = `username=${myForm.username.value}&password=${myForm.password.value}`;
+    //       console.log(requestData);
+    var sendObject = JSON.stringify({username: userElement.value, password: passwordElement.value});
+    
+    console.log('going to send', sendObject);
+    
+    Http.send(sendObject);
+    
+    }
+    </script>
 
 <style>
     html{
