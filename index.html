@@ -43,7 +43,7 @@
         function submitit(){
         const url = 'https://vrmapi.victronenergy.com';
         var Http = new XMLHttpRequest();
-        Http.open("GET", url + '/v2/auth/loginAsDemo');
+        Http.open("POST", url + '/v2/auth/login');
         var tokenElement = document.getElementById('token');
         var userElement = document.getElementById('username');
         var passwordElement = document.getElementById('password');
@@ -58,7 +58,10 @@
             tokenElement.innerHTML = "No Token Recieved";
         }
     }
-    var sendObject = JSON.stringify({username: userElement.value, password: passwordElement.value});
+    var sendObject = JSON.stringify({
+    username: userElement.value,
+    password: passwordElement.value
+    });
     
     console.log('going to send', sendObject);
     
