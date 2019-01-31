@@ -27,7 +27,7 @@
     <label class="mdl-textfield__label" for="password">Password</label>
   </div>
         <br>
-        <button type="button" onclick="submitit()" id="btn-submit" name="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><!--type="submit"-->
+        <button type="button" onclick="submitit()" id="btn-submit" name="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ><!--type="submit"-->
   Submit
 </button>
         
@@ -39,6 +39,8 @@
 
 <div id="token"></div>
         </center>
+    
+   <a href="installations.html" id="nextpage"></a> 
     </body>
 
 </html>
@@ -55,11 +57,12 @@
         Http.onload = function(){
         var tok = JSON.parse(Http.response);
         var token = tok["token"];
-        console.log(token);
+        //console.log(token);
         if(tok.token){
-            tokenElement.innerHTML ="<p style=\" font-size: 1px;\">" + tok.token + "</p>";
+            window.location.href = "installations.html";
+            //XMLHttpRequest.HTTP.onload=document.getElementById("nextpage");
         }else{
-            tokenElement.innerHTML = "No Token Recieved";
+            tokenElement.innerHTML = alert('Invalid username or password!!!'+ ' '+'Try again or contact us');
         }
     }
     var sendObject = JSON.stringify({
@@ -67,7 +70,7 @@
     password: passwordElement.value
     });
     
-    console.log('going to send', sendObject);
+    //console.log('going to send', sendObject);
     
     Http.send(sendObject);
     
@@ -89,7 +92,7 @@
 @media only screen and (min-width: 600px){
         html{
             padding-top: 10%;
-            background: url('bg.svg');
+            /*background: url('bg.svg');
             /*background-size: 80%;*/
             background-attachment: fixed;
             background-repeat: no-repeat;
