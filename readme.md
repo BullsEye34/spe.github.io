@@ -1,3 +1,4 @@
-# Project Discontinued Due To Most Probably Corrupted APIs
+# Project To Merge Victron Energy Login API Into SunPV Energy
 <br>
-# Project To Merge Victron Database into SunPvEnergy
+# Victron Energy API
+Victron Energy API is a RESTful API, Provided by Victron Energy.
