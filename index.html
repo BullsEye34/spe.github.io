@@ -36,7 +36,7 @@
 </form>
 <a href="mailto:ravi@sunpvenergy.com?Subject=Hello SunPV Energy, I need some help!">Having Trouble? Please Write to us</a>
 
-<div id="token"></div>
+<div id="installations"></div>
         </center>
     
    <a href="installations.html" id="nextpage"></a> 
@@ -49,7 +49,7 @@
         const url = 'https://vrmapi.victronenergy.com';
         var Http = new XMLHttpRequest();
         Http.open("POST", url + '/v2/auth/login');
-        var tokenElement = document.getElementById('token');
+        var installElement = document.getElementById('installations');
         var userElement = document.getElementById('username');
         var passwordElement = document.getElementById('password');
         var bodyElement = document.getElementById('bodyFull')
@@ -65,7 +65,7 @@
             bodyElement.innerHTML = "<h1>Heyyyyyyyy</h1>";        
             bodyElement.innerHTML = "<h1>Heyyo</h1>";            
         }else{
-            tokenElement.innerHTML = alert('Invalid username or password!!!'+ ' '+'Try again or contact us');
+            /*installElement.innerHTML = */alert('Invalid username or password!!!'+ ' '+'Try again or contact us');
         }
     }
     var sendObject = JSON.stringify({
