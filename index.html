@@ -57,13 +57,16 @@
         Http.onload = function(){
         var tok = JSON.parse(Http.response);
         var token = tok["token"];
+
+
+
+
         //console.log(token);
         if(tok.token){
             //window.location.href = "installations.html";
             //XMLHttpRequest.HTTP.onload=document.getElementById("nextpage");
             
-            bodyElement.innerHTML = "<h1>Heyyyyyyyy</h1>";        
-            bodyElement.innerHTML = "<h1>Heyyo</h1>";            
+            bodyElement.innerHTML = "<h1>Heyyyyyyyy</h1>";            
         }else{
             /*installElement.innerHTML = */alert('Invalid username or password!!!'+ ' '+'Try again or contact us');
         }
@@ -77,6 +80,7 @@
     
     Http.send(sendObject);
     
+ 
     }
     </script>
 
