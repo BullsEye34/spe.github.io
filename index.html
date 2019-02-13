@@ -55,18 +55,34 @@
         var bodyElement = document.getElementById('bodyFull')
         Http.setRequestHeader("Content-Type", "application/json");
         Http.onload = function(){
-        var tok = JSON.parse(Http.response);
-        var token = tok["token"];
+            var tok = JSON.parse(Http.response);
+            var token = tok["token"];
+
+            var idUser = tok.idUser;
 
 
 
 
-        //console.log(token);
-        if(tok.token){
-            //window.location.href = "installations.html";
-            //XMLHttpRequest.HTTP.onload=document.getElementById("nextpage");
-            
-            bodyElement.innerHTML = "<h1>Heyyyyyyyy</h1>";            
+            console.log(Http.response);
+
+
+            if(tok.token){
+               var vag = new XMLHttpRequest();
+                vag.open("GET", url + '/v2/users/' + idUser + '/installations?extended=1');
+                vag.setRequestHeader("Content-Type", "application/json");
+                vag.setRequestHeader('X-Authorization', 'Bearer ' + token);
+                vag.onload = function(){
+                    var gav = JSON.parse(vag.response);
+                    var records = [ gav["records"] ];
+                    //console.log(vag);
+                    console.log(gav);
+
+                    bodyElement.innerHTML = "<p style=\" font-size: 11px;\"> Hi" + " \" " + gav.records[0] + " \" " + "</p>";  
+                }
+                vag.send();
+                //bodyElement.innerHTML = vag.response;
+                          
+                
         }else{
             /*installElement.innerHTML = */alert('Invalid username or password!!!'+ ' '+'Try again or contact us');
         }
