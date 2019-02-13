@@ -77,7 +77,8 @@
                     //console.log(vag);
                     console.log(gav);
 
-                    bodyElement.innerHTML = "<p style=\" font-size: 11px;\"> Hi" + " \" " + gav.records[0] + " \" " + "</p>";  
+                    //bodyElement.innerHTML = "<p style=\" font-size: 11px;\"> Hi" + " \" " + gav.records[0].name + " \" " + "</p>";  
+                    bodyElement.innerHTML = "<style>.demo-list-item {width: 300px;}html{/*padding-top: 50%;*/ overflow: hidden;}</style><meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\" /><ul class=\"demo-list-item mdl-list\"><li class=\"mdl-list__item\"><span class=\"mdl-list__item-primary-content\">" + gav.records[0].name + "</span></li><li class=\"mdl-list__item\"><span class=\"mdl-list__item-primary-content\">" + gav.records[1].name + "</span></li><li class=\"mdl-list__item\"><span class=\"mdl-list__item-primary-content\">" + gav.records[2].name + "</span></li><li class=\"mdl-list__item\"><span class=\"mdl-list__item-primary-content\">" + gav.records[3].name + "</span></li></ul>";  
                 }
                 vag.send();
                 //bodyElement.innerHTML = vag.response;
