@@ -7,6 +7,7 @@
 <!--<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-indigo.min.css" /> -->
 <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.light_blue-blue.min.css" />
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script src="java.js"></script>
 
 <title>
     
@@ -43,63 +44,6 @@
     </body>
 
 </html>
-
-<script>
-        function submitit(){
-        const url = 'https://vrmapi.victronenergy.com';
-        var Http = new XMLHttpRequest();
-        Http.open("POST", url + '/v2/auth/login');
-        var installElement = document.getElementById('installations');
-        var userElement = document.getElementById('username');
-        var passwordElement = document.getElementById('password');
-        var bodyElement = document.getElementById('bodyFull')
-        Http.setRequestHeader("Content-Type", "application/json");
-        Http.onload = function(){
-            var tok = JSON.parse(Http.response);
-            var token = tok["token"];
-
-            var idUser = tok.idUser;
-
-
-
-
-            console.log(Http.response);
-
-
-            if(tok.token){
-               var vag = new XMLHttpRequest();
-                vag.open("GET", url + '/v2/users/' + idUser + '/installations?extended=1');
-                vag.setRequestHeader("Content-Type", "application/json");
-                vag.setRequestHeader('X-Authorization', 'Bearer ' + token);
-                vag.onload = function(){
-                    var gav = JSON.parse(vag.response);
-                    var records = [ gav["records"] ];
-                    //console.log(vag);
-                    console.log(gav);
-
-                    //bodyElement.innerHTML = "<p style=\" font-size: 11px;\"> Hi" + " \" " + gav.records[0].name + " \" " + "</p>";  
-                    bodyElement.innerHTML = "<style>.demo-list-item {width: 300px;}html{/*padding-top: 50%;*/ overflow: hidden;}</style><meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\" /><ul class=\"demo-list-item mdl-list\"><li class=\"mdl-list__item\"><span class=\"mdl-list__item-primary-content\">" + gav.records[0].name + "</span></li><li class=\"mdl-list__item\"><span class=\"mdl-list__item-primary-content\">" + gav.records[1].name + "</span></li><li class=\"mdl-list__item\"><span class=\"mdl-list__item-primary-content\">" + gav.records[2].name + "</span></li><li class=\"mdl-list__item\"><span class=\"mdl-list__item-primary-content\">" + gav.records[3].name + "</span></li></ul>";  
-                }
-                vag.send();
-                //bodyElement.innerHTML = vag.response;
-                          
-                
-        }else{
-            /*installElement.innerHTML = */alert('Invalid username or password!!!'+ ' '+'Try again or contact us');
-        }
-    }
-    var sendObject = JSON.stringify({
-    username: userElement.value,
-    password: passwordElement.value
-    });
-    
-    //console.log('going to send', sendObject);
-    
-    Http.send(sendObject);
-    
- 
-    }
-    </script>
 
 
 
